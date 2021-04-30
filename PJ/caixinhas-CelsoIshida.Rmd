@@ -1,0 +1,100 @@
+```{r data generation, echo = FALSE, results = "hide"}
+
+## questão gerada pelo CELSO ISHIDA com várias "caixinhas" de entrada na question
+
+preco <- sample(500:5000, 3)
+estoque <- sample(20:200, 3)
+semana <- sample(1:16, 3)
+estoque2 <- c(estoque[1] - semana[1], estoque[2], estoque[3] - semana[3])
+novopreco <- as.numeric(preco * 1.05)
+valortotal2 <- sum(novopreco*estoque2)
+valortotal3 <- sum(2.*estoque2*novopreco)
+```
+
+Question
+========
+
+Uma loja que vende celulares tem uma tabela com seus preços e quantidade de produtos
+em estoque:
+
+| | Celular 1 | Celular 2 | Celular 3 |
+|:-------------:|:-----------------:|:-----------------:|:-----------------:|
+|Preço (R$) | `r preco[1]`| `r preco[2]`| `r preco[3]` |
+|Estoque | `r estoque[1]`| `r estoque[2]`| `r estoque[3]` |
+
+Todos os celulares são importados, logo, o preço é reajustado de acordo com o dólar. Esta
+semana o dólar subiu 5%. Faça na sequência considerando sempre todas as informações anteriores.
+
+O vetor, $nome \in \Re^3$, com os nomes é: nome=[Celular 1, Celular 2, Celular 3]
+
+Baseado no vetor 'nome', indique os valos dos vetores $preco \in \Re^3$ e $estoque \in \Re^3$:
+
+| | | | |
+|:-------------:|:-----------------:|:-----------------:|:-----------------:|
+|preco = [ | \#\#ANSWER1\#\# , | \#\#ANSWER2\#\# , | \#\#ANSWER3\#\# ] |
+|estoque= [ | \#\#ANSWER4\#\# , | \#\#ANSWER5\#\# , | \#\#ANSWER6\#\# ] |
+
+
+
+Todos os celulares são importados, logo, o preço é reajustado de acordo com o dólar. Esta
+semana o dólar subiu 5%. Indique os novos valores. Sendo $preconovo \in \Re^3 $
+
+preconovo = $1,05 * preco$
+
+| | | | |
+|:-------------:|:-----------------:|:-----------------:|:-----------------:|
+|preconovo = [ | \#\#ANSWER7\#\# , | \#\#ANSWER8\#\# , | \#\#ANSWER9\#\# ] |
+
+A loja vendeu esta semana `r semana[1]` unidade(s) do "celular 1" e `r semana[3]` unidade(s) do "celular 3". O vetor de vendas da semana:
+
+| | | | |
+|:-------------:|:-----------------:|:-----------------:|:-----------------:|
+|semana = [ | `r semana[1]` , | 0, | `r semana[3]` ] |
+
+
+Indique os novos valores para o vetor de estoque:
+
+| | | | |
+|:-------------:|:-----------------:|:-----------------:|:-----------------:|
+|estoque2 = [ | \#\#ANSWER10\#\# , | \#\#ANSWER11\#\# , | \#\#ANSWER12\#\# ] |
+
+O valor total de todo o estoque pode ser calculado pelo produto interno <estoque2, precopreco>.
+
+Qual o valor de <estoque2, preconovo>? \#\#ANSWER13\#\#
+
+Dobrando o estoque, qual o novo valor total do estoque para cada produto?
+
+<2*estoque, preco>=\#\#ANSWER14\#\#
+
+Solution
+========
+
+| | | | |
+|:-------------:|:-----------------:|:-----------------:|:-----------------:|
+|preco = [ | `r preco[1]` , | `r preco[2]` , | `r preco[3]` ] |
+|estoque= [ | `r estoque[1]` , | `r estoque[2]` , | `r estoque[3]` ] |
+
+
+Meta-information
+================
+extype: cloze
+exsolution: `r preco[1]`| `r preco[2]`| `r preco[3]`| `r estoque[1]`| `r estoque[2]`| `r estoque[3]`| `r novopreco[1]`| `r novopreco[2]`| `r novopreco[3]`| `r estoque[1]-semana[1]`| `r estoque[2]`| `r estoque[3]-semana[3]`|`r fmt(valortotal2, 4)`|`r fmt(valortotal3, 4)`
+exclozetype: num|num|num|num|num|num|num|num|num|num|num|num|num|num
+exname: Distances
+extol: 0.0001
+
+
+Question
+========
+
+Um mol de um gás ideal \textbf{monoatômico} é substância de trabalho de uma máquina térmica que opera segundo o ciclo da figura abaixo:
+O estado 1 tem pressão P = `r p` atm, volume V = `r V` m$^3$ e temperatura T = `r T` K. A pressão P' é `r q` vezes maior que P e o volume V' é `r m` vezes maior que V.
+
+Quais as temperaturas dos estados 2, 3 e 4?
+
+T$_2$ = \#\#ANSWER1\#\# K.
+
+T$_3$ = \#\#ANSWER2\#\# K.
+
+T$_4$ = \#\#ANSWER3\#\# K.
+

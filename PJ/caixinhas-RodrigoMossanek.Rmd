@@ -1,0 +1,74 @@
+```{r data generation, echo = FALSE, results = "hide"}
+tol = 0.02
+p = signif(runif(1,1,4),3)
+V = signif(runif(1,2,5),3)
+T = signif(runif(1,150,300),3)
+q = sample(2:5,1)
+m = sample(2:5,1)
+R = 8.314
+cv = 3/2*R
+cp = cv + R
+T2 = q*T
+T2tol = T2*tol
+T3 = q*m*T
+T3tol = T3*tol
+T4 = m*T
+T4tol = T4*tol
+W = (q-1)*(m-1)*R*T
+Wtol = W*tol
+Qq = (cv*(q-1)+cp*q*(m-1))*T
+Qqtol = Qq*tol
+eta = W/Qq*100
+etatol = eta*tol
+```
+
+```{r, echo = FALSE, results = "hide", out.width = "20%"}
+exams::include_supplement("maquina_termica.png")
+```
+
+Question
+========
+
+Um mol de um gás ideal \textbf{monoatômico} é substância de trabalho de uma máquina térmica que opera segundo o ciclo da figura abaixo:
+
+![](maquina_termica.png){width=30%}
+
+O estado 1 tem pressão P = `r p` atm, volume V = `r V` m$^3$ e temperatura T = `r T` K. A pressão P' é `r q` vezes maior que P e o volume V' é `r m` vezes maior que V.
+
+Quais as temperaturas dos estados 2, 3 e 4?
+
+T$_2$ = \#\#ANSWER1\#\# K.
+
+T$_3$ = \#\#ANSWER2\#\# K.
+
+T$_4$ = \#\#ANSWER3\#\# K.
+
+Qual o trabalho, em joules, realizado pelo gás durante o ciclo?
+
+W = \#\#ANSWER4\#\# J.
+
+Qual a energia fornecida ao gás, em joules, em forma de calor durante o ciclo?
+
+Q$_q$ = \#\#ANSWER5\#\# J.
+
+Qual a eficiência, em porcentagem, desta máquina térmica?
+
+$\eta$ = \#\#ANSWER6\#\# $%$.
+
+
+Obs.: Para utilizar notação científica, por exemplo, se a resposta é $2,10 \times 10^{-2}$, escreva 2,10*10^(-2).
+
+Obs.: Respostas com 3 algarismos significativos.
+
+Obs.: Cuidado com as unidades!!!
+
+
+Meta-information
+================
+extype: cloze
+exsolution: `r T2`|`r T3`|`r T4`|`r W`|`r Qq`|`r eta`
+exclozetype: num|num|num|num|num|num
+exname: any
+extol: `r T2tol`|`r T3tol`|`r T4tol`|`r Wtol`|`r Qqtol`|`r etatol`
+expoints: 1|1|1|1|1|1
+
