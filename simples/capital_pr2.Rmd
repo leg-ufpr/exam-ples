@@ -1,0 +1,46 @@
+Question
+========
+
+Qual é a capital do Paraná?
+
+Answerlist
+----------
+
+* São Paulo
+* Foz do Iguaçu
+* Curitiba
+* Brasília
+* Cascavel
+* Araucária
+* Ponta Grossa
+* Florianópolis
+* Rio de Janeiro
+* Manaus
+
+
+Solution
+========
+
+A capital do Paraná é Curitiba.
+
+Answerlist
+----------
+
+* Falso
+* Falso
+* Verdadeiro
+* Falso
+* Falso
+* Falso
+* Falso
+* Falso
+* Falso
+* Falso
+
+Meta-information
+================
+
+exname: Capital do Paraná com 10 alternativas
+extype: schoice
+exsolution: 0010000000
+exshuffle: 5

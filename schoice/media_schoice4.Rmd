@@ -1,0 +1,51 @@
+```{r dados, echo=FALSE, results='hide'}
+dados <- round(rnorm(10, mean = 100, sd = 10), 1)
+certo <- mean(dados)
+## Como criar alternativas erradas?
+## 1. Inserir valores quaisquer (mas isso vai depender dos sorteados)
+## 2. Programar "desvios" da resposta correta
+## 3. Usar a função abaixo
+alternativas <- num_to_schoice(certo)
+
+## Auxiliares
+sumx <- sum(dados)
+n <- length(dados)
+```
+
+
+Question
+========
+
+Qual a média destes valores: `r sort(dados)`?
+
+
+```{r questionlist, echo=FALSE, results='asis'}
+answerlist(alternativas$questions, markup = 'markdown')
+```
+
+
+Solution
+========
+
+A média é calculada como
+
+$$
+\begin{align*}
+\bar{X} &= \frac{\sum_{i=1}^{`r n`} X_i}{n} \\
+        &= \frac{`r paste(sort(dados), collapse = " + ")`}{`r n`} \\
+        &= \frac{`r sumx`}{`r n`} \\
+        &= `r certo`
+\end{align*}
+$$
+
+```{r solutionslist, echo=FALSE, results='asis'}
+answerlist(ifelse(alternativas$solutions, 'Verdadeiro', 'Falso'), markup = 'markdown')
+```
+
+Meta-information
+================
+
+exname: Média com R aleatório normal
+extype: schoice
+exsolution: `r mchoice2string(alternativas$solutions)`
+exshuffle: 5

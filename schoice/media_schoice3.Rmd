@@ -1,0 +1,36 @@
+```{r dados, echo=FALSE, results='hide'}
+dados <- sample(10:30, size = 3)
+certo <- mean(dados)
+## Como criar alternativas erradas?
+## 1. Inserir valores quaisquer (mas isso vai depender dos sorteados)
+## 2. Programar "desvios" da resposta correta
+## 3. Usar a função abaixo
+alternativas <- num_to_schoice(certo)
+```
+
+
+Question
+========
+
+Qual a média destes valores: `r dados`?
+
+
+```{r questionlist, echo=FALSE, results='asis'}
+answerlist(alternativas$questions, markup = 'markdown')
+```
+
+
+Solution
+========
+
+```{r solutionslist, echo=FALSE, results='asis'}
+answerlist(ifelse(alternativas$solutions, 'Verdadeiro', 'Falso'), markup = 'markdown')
+```
+
+Meta-information
+================
+
+exname: Média com R aleatório
+extype: schoice
+exsolution: `r mchoice2string(alternativas$solutions)`
+exshuffle: 5

@@ -1,0 +1,36 @@
+Question
+========
+
+Qual a média destes valores: 10, 11, 12?
+
+
+Answerlist
+----------
+
+* 120
+* 12
+* 10
+* 11
+* 10.5
+
+
+Solution
+========
+
+
+Answerlist
+----------
+
+* Falso
+* Falso
+* Falso
+* Verdadeiro
+* Falso
+
+Meta-information
+================
+
+exname: Média estático
+extype: schoice
+exsolution: 00010
+exshuffle: 5

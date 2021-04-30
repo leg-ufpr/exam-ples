@@ -1,0 +1,44 @@
+Question
+========
+
+Qual(is) destas cidades estão localizadas no estado do Paraná?
+
+Answerlist
+----------
+
+* São Paulo
+* Foz do Iguaçu
+* Curitiba
+* Brasília
+* Cascavel
+* Araucária
+* Ponta Grossa
+* Florianópolis
+* Rio de Janeiro
+* Manaus
+
+
+Solution
+========
+
+Answerlist
+----------
+
+* Falso
+* Verdadeiro
+* Verdadeiro
+* Falso
+* Verdadeiro
+* Verdadeiro
+* Verdadeiro
+* Falso
+* Falso
+* Falso
+
+Meta-information
+================
+
+exname: Cidades do Paraná
+extype: mchoice
+exsolution: 0110111000
+exshuffle: 5

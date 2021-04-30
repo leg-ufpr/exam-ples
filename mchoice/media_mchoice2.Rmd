@@ -1,0 +1,79 @@
+```{r dados, echo=FALSE, results='hide'}
+## Em questões de múltipla escolha é mais fácil criar vetores para
+## questões e soluções e (opcionalmente) para explicações.
+n_alternativas <- 5
+questions <- explanations <- character(n_alternativas)
+solutions <- logical(n_alternativas)
+
+## Gera os dados
+dados <- round(rnorm(10, mean = 100, sd = 10), 1)
+## Auxiliares
+sumx <- sum(dados)
+n <- length(dados)
+
+## 1. Média
+media <- mean(dados)
+r1 <- sample(c(media, media+runif(1,1,2)), size = 1)
+questions[1] <- sprintf("A média é %.2f", r1)
+solutions[1] <- r1 == media
+explanations[1] <- sprintf("A média é $\\bar{X} = \\sum X_i/n = %.2f/%.2f = %.2f$", sumx, n, media)
+
+## 2. Variância
+vari <- var(dados) * ((n - 1)/n)
+vari_certa <- sum((dados - mean(dados))^2)/(n-1)
+r2 <- sample(c(vari, vari_certa), size = 1)
+questions[2] <- sprintf("A variância é %.2f", r2)
+solutions[2] <- r2 == vari_certa
+explanations[2] <- sprintf("A variância é $s^2 = \\sum (X_i - \\bar{X})^2/(n-1) = \\sum (X_i - %.2f)^2/%.0f = %.2f$", media, n-1, vari_certa)
+
+## 3. Desvio padrão
+desv <- sqrt(vari)
+desv_certa <- sqrt(vari_certa)
+r3 <- sample(c(desv, desv_certa), size = 1)
+questions[3] <- sprintf("O desvio-padrão é %.2f", r3)
+solutions[3] <- r3 == desv_certa
+explanations[3] <- sprintf("O desvio-padrão é $s = \\sqrt{\\sum (X_i - \\bar{X})^2/(n-1)} = \\sqrt{\\sum (X_i - %.2f)^2/%.0f} = %.2f$", media, n-1, desv_certa)
+
+## 4. Mediana
+median(dados)
+## Sempre fazer como os alunos fariam na mão
+medi <- mean(sort(dados)[c(5,6)])
+r4 <- sample(c(medi, sort(dados)[5], sort(dados)[6]), size = 1)
+questions[4] <- sprintf("A mediana é %.2f", r4)
+solutions[4] <- r4 == medi
+explanations[4] <- sprintf("Como $n$ é par, a mediana é a média entre os dois valores mais centrais ordenados, ou seja, $(%.1f + %.1f)/2 = %.1f$", sort(dados)[5], sort(dados)[6], medi)
+
+## 5. Mínimo
+mini <- min(dados)
+r5 <- sample(c(mini, max(dados)), size = 1)
+questions[5] <- sprintf("O valor mínimo é %.2f", r5)
+solutions[5] <- r5 == mini
+explanations[5] <- sprintf("O valor mínimo é $X_{(1)} = %.1f$", mini)
+```
+
+
+Question
+========
+
+Considere os seguintes valores: `r sort(dados)` e responda as questões abaixo.
+
+
+```{r questionlist, echo=FALSE, results='asis'}
+answerlist(questions, markup = 'markdown')
+```
+
+
+Solution
+========
+
+```{r solutionslist, echo=FALSE, results='asis'}
+answerlist(ifelse(solutions, 'Verdadeiro', 'Falso'), explanations, markup = 'markdown')
+```
+
+Meta-information
+================
+
+exname: Média com R aleatório normal
+extype: mchoice
+exsolution: `r mchoice2string(solutions)`
+exshuffle: 5

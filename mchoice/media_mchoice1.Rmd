@@ -1,0 +1,76 @@
+```{r dados, echo=FALSE, results='hide'}
+## Em questões de múltipla escolha é mais fácil criar vetores para
+## questões e soluções e (opcionalmente) para explicações.
+n_alternativas <- 5
+questions <- explanations <- character(n_alternativas)
+solutions <- logical(n_alternativas)
+
+## Gera os dados
+dados <- round(rnorm(10, mean = 100, sd = 10), 1)
+## Auxiliares
+sumx <- sum(dados)
+n <- length(dados)
+
+## 1. Média
+media <- mean(dados)
+questions[1] <- sprintf("A média é %.2f", media)
+solutions[1] <- TRUE
+explanations[1] <- sprintf("A média é $\\bar{X} = \\sum X_i/n = %.2f/%.2f = %.2f$", sumx, n, media)
+
+## 2. Variância
+## Supondo que o aluno dividiu por n, quando era para dividir por (n-1)
+vari <- var(dados) * ((n - 1)/n)
+vari_certa <- sum((dados - mean(dados))^2)/(n-1)
+questions[2] <- sprintf("A variância é %.2f", vari)
+solutions[2] <- FALSE
+explanations[2] <- sprintf("A variância é $s^2 = \\sum (X_i - \\bar{X})^2/(n-1) = \\sum (X_i - %.2f)^2/%.0f = %.2f$", media, n-1, vari_certa)
+
+## 3. Desvio padrão
+## Supondo que o aluno usou a variância errada
+desv <- sqrt(vari)
+desv_certa <- sqrt(vari_certa)
+questions[3] <- sprintf("O desvio-padrão é %.2f", desv)
+solutions[3] <- FALSE
+explanations[3] <- sprintf("O desvio-padrão é $s = \\sqrt{\\sum (X_i - \\bar{X})^2/(n-1)} = \\sqrt{\\sum (X_i - %.2f)^2/%.0f} = %.2f$", media, n-1, desv_certa)
+
+## 4. Mediana
+median(dados)
+## Sempre fazer como os alunos fariam na mão
+medi <- mean(sort(dados)[c(5,6)])
+questions[4] <- sprintf("A mediana é %.2f", medi)
+solutions[4] <- TRUE
+explanations[4] <- sprintf("Como $n$ é par, a mediana é a média entre os dois valores mais centrais ordenados, ou seja, $(%.1f + %.1f)/2 = %.1f$", sort(dados)[5], sort(dados)[6], medi)
+
+## 5. Mínimo
+mini <- min(dados)
+questions[5] <- sprintf("O valor mínimo é %.2f", mini)
+solutions[5] <- TRUE
+explanations[5] <- sprintf("O valor mínimo é $X_{(1)} = %.1f$", mini)
+```
+
+
+Question
+========
+
+Considere os seguintes valores: `r sort(dados)` e responda as questões abaixo.
+
+
+```{r questionlist, echo=FALSE, results='asis'}
+answerlist(questions, markup = 'markdown')
+```
+
+
+Solution
+========
+
+```{r solutionslist, echo=FALSE, results='asis'}
+answerlist(ifelse(solutions, 'Verdadeiro', 'Falso'), explanations, markup = 'markdown')
+```
+
+Meta-information
+================
+
+exname: Média com R aleatório normal
+extype: mchoice
+exsolution: `r mchoice2string(solutions)`
+exshuffle: 5

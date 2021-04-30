@@ -1,0 +1,33 @@
+```{r dados, echo=FALSE, results='hide'}
+dados <- 10:12
+certo <- mean(dados)
+alternativas <- c(certo, 120, 12, 10, 10.5)
+solucao <- c(TRUE, FALSE, FALSE, FALSE, FALSE)
+```
+
+
+Question
+========
+
+Qual a média destes valores: 10, 11, 12?
+
+
+```{r questionlist, echo=FALSE, results='asis'}
+answerlist(alternativas, markup = 'markdown')
+```
+
+
+Solution
+========
+
+```{r solutionslist, echo=FALSE, results='asis'}
+answerlist(ifelse(solucao, 'Verdadeiro', 'Falso'), markup = 'markdown')
+```
+
+Meta-information
+================
+
+exname: Média com R
+extype: schoice
+exsolution: `r mchoice2string(solucao)`
+exshuffle: 5

@@ -1,0 +1,109 @@
+```{r datagen, echo = FALSE, results = "hide"}
+n <- sample(seq(8,16, by=2), 1)
+mu <- sample(seq(700, 1050, by=50), 1)
+sigma <- sample(c(40,50,60), 1)
+d <- sample(c(0.2, 0.5, 0.75, 1)*sigma, 1)
+y <- round(rnorm(n, mu-d, sigma), dig=0)
+
+alternativa <- sample(c("inferior","diferente"), 1)
+tipo <- ifelse(alternativa == "inferior", "U", "B")
+
+alpha <- sample(c(0.01, 0.05, 0.10), 1)
+tcrit <- round(ifelse(alternativa == "inferior",
+                      qt(alpha, df=n-1),
+                      qt(alpha/2, df=n-1)), dig=2)
+
+ybar <- mean(y)
+s <- sd(y)
+tcalc <- round((ybar-mu)/(s/sqrt(n)), dig=2)
+
+## Estava pnorm
+## pvalor <- ifelse(alternativa == "unilateral", pnorm(tcalc), 2*pnorm(-abs(tcalc)))
+pvalor <- ifelse(alternativa == "unilateral",
+                 pt(tcalc, n - 1), 2 * pt(-abs(tcalc), n - 1))
+rejeita <- ifelse(pvalor < alpha, "S", "N")
+
+pvalor.class <- cut(pvalor, br=c(0,0.01, 0.025, 0.05, 0.10, 1))
+
+## Precisa de um vetor de T/F
+nclass <- seq_along(levels(pvalor.class))
+pvalor.sol <- nclass %in% as.numeric(pvalor.class)
+mchoice2string(pvalor.sol)
+
+## Vetor para o exsolution
+sol <- c("T", tipo, tcrit, tcalc, mchoice2string(pvalor.sol), rejeita)
+## Vetor para o answerlist
+sol.ans <- c("T", tipo, tcrit, tcalc, pvalor.sol, rejeita)
+
+## No enunciado estava 0.05. Mudei para 0.08 (ou qualquer valor que
+## estiver aqui)
+tol <- c(0.08, 0.08)
+
+## c(mu, n, sigma, d)
+## alternativa
+## tipo
+## alpha
+## c(tcrit, tcalc)
+## rejeita
+## pvalor.class
+## levels(pvalor.class)
+## as.numeric(pvalor.class)
+
+
+```
+
+Question
+==========
+
+Um agrônomo afirma que a produtividade média do feijão da safra das
+lavouras de agricultores familiares de um determinado ano é de `r mu`
+kg/ha. Para investigar se a produtividade é `r alternativa` 
+à afirmada pelo agrônomo, selecionou-se uma amostra de `r n` 
+lavouras onde obteve-se os seguintes valores de produtividade de feijão, em kg/ha:
+
+```{r,echo=FALSE}
+pander:::pander(matrix(y, nrow=2))
+```
+
+Proceda um teste de hipótese para afirmação do agrônomo com o nível de
+significância de `r round(alpha*100)`%.
+
+**OBSERVAÇÕES**:
+
+- Nas alternativas de resposta com texto forneça apenas a letra maíuscula
+  correspondente á resposta correta
+- Na letra **e** selecione o intervalo de valores correspondente ao
+  $p$-valor.
+
+
+Answerlist
+----------
+
+* Qual a estatística de teste (Z = z, T = t, F = F, X = qui-quadrado)?
+* Qual o tipo de teste (U = unilateral, B = bilateral)?
+* (2, `r tol[1]`) Qual o valor crítico do teste (o valor que define a
+  região crítica), na escala da estatística de teste?
+* (2, `r tol[2]`) Qual o valor da estatística de teste?
+* (0,0.01]
+* (0.01,0.025]
+* (0.025,0.05]
+* (0.05,0.1]
+* (0.1,1]
+* Ao nível de significância de `r round(alpha*100)`%, pode-se rejeitar a
+  hipótese nula (S = sim, N = não)?
+
+
+Solution
+==========
+
+```{r, echo=FALSE, results='asis'}
+answerlist(sol.ans, markup = "markdown")
+```
+
+Meta-information
+==========
+exname: Teste de hipótese para 1 média variância desconhecida
+extype: cloze
+exclozetype: string|string|num|num|schoice|string
+exsolution: `r paste(sol, collapse = "|")`
+extol: `r paste(tol, collapse = "|")`
