@@ -23,7 +23,7 @@ library(exams)
 Depois de criar uma questão no formato apropriado, podemos fazer sua
 visualização em HTML com
 
-```{r}
+```{r, eval=FALSE}
 exams2html("arquivo.Rmd", converter = "pandoc-mathjax", mathjax = TRUE)
 ```
 
