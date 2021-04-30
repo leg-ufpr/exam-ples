@@ -1,0 +1,36 @@
+```{r echo=FALSE, results="hide"}
+n <- 3
+dados <- round(runif(n = n, min = 10, max = 99), 1)
+ss <- sum(dados)
+med <- ss/n
+resp <- fmt(med, 2)
+```
+
+Question
+==========
+
+Qual a média entre `r dados`? (Arredonde para duas casa decimais).
+
+Solution
+==========
+
+
+A média é calculada como
+
+$$
+\begin{align*}
+\bar{x} &= \frac{1}{n} \sum_{i=1}^{n} x_i \\
+        &= \frac{1}{`r n`} \, (`r paste(dados, collapse = "+")`) \\
+        &= \frac{1}{`r n`} \, `r ss` \\
+        &= `r med` \\
+        &\approx `r resp` \\
+\end{align*}
+$$
+
+Meta-information
+==========
+
+exname: Descreva a questão
+extype: num
+exsolution: `r resp`
+extol: 0.01
