@@ -1,0 +1,120 @@
+```{r data_generation, echo = FALSE, results = "hide"}
+#Dados da questao
+prev<-round(runif(1,0.02,0.04),3)
+s<-round(runif(1,0.7,0.9),1)
+e<-round(runif(1,0.6,0.9),1)
+fpos<-1-e
+fneg<-1-s
+
+vpp<-round((s*prev)/(s*prev+((1-e)*(1-prev))),3)
+vpn<-round((e*(1-prev))/(((1-s)*prev)+(e*(1-prev))),3)
+tpos<-round(s*prev+(1-e)*(1-prev),3)
+
+
+na <- 3
+questions <- character(na)
+sol<-numeric(na)
+
+opt1<-c("positivos","negativos")
+i1<-sample(1:2,1)
+questions[1]<-paste0("Qual será a proporção de testes ",opt1[i1],"?")
+sol[1]<-ifelse(i1==1,tpos,1-tpos)
+
+opt2<-c("de fato tenha","na realidade não tenha")
+i2<-sample(1:2,1)
+questions[2]<-paste0("Qual é a chance de que alguém com um teste positivo ",opt2[i2]," câncer?")
+sol[2]<-ifelse(i2==1,vpp,1-vpp)
+  
+opt3<-c("de fato não tenha","na realidade tenha")
+i3<-sample(1:2,1)
+questions[3]<-paste0("Qual é a chance de que alguém com um teste negativo ",opt3[i3]," câncer?")
+sol[3]<-ifelse(i3==1,vpn,1-vpn)
+
+(tol<-round(0.1*as.numeric(sol),3))
+
+```
+
+
+Question
+========
+Um investigador desenvolve um teste de rastreamento para câncer. Ele usa este teste em pacientes sabidamente com a doença e em pacientes sem a doença, e descobre que o teste tem uma taxa de `r fpos*100`\% de resultados positivos dentre pacientes sem câncer e `r fneg*100`\% de resultados negativos dentre pacientes com câncer. Ele agora vai aplicar este teste numa população na qual ele sabe que tem `r prev*100`\% de câncer não detectado.
+
+(Será considerado arredondamento para a terceira casa decimal e uma tolerância de 10\%).
+
+Questionlist
+------------
+
+* `r questions[1]`
+
+* `r questions[2]`
+
+* `r questions[3]`
+
+
+Solution
+========
+
+Explicação:
+
+Sejam $T$ e $T^c$ usados para denotar os resultados positivo e negativo na varredura e 
+$D$ e $D^c$ para pacientes com e sem câncer.
+
+A proporção de testes de varredura positivos:
+$$
+\begin{aligned}
+P(T)&=P(T \cap D)+P(T \cap D^c)=P(T|D) \cdot P(D)+P(T|D^c) \cdot P(D^c)\\
+&= `r s` \cdot `r prev` + (1- `r e` )\cdot (1- `r  prev` )\\
+&= `r fmt(tpos,3)`
+\end{aligned}
+$$
+
+
+A proporção de testes de varredura negativos:
+$$P(T^c)=1-P(T)=1-`r tpos`=`r fmt(1-tpos,3)`$$
+
+
+A proporção de pessoas com resultado positivo no teste que de fato tem a doença é:
+$$
+\begin{aligned}
+P(D|T) &= \frac {P(T|D) \cdot P(D)}{P(T)}\\
+&=\frac{ `r s` \cdot `r prev` }{ `r tpos`}\\
+&= `r vpp`
+\end{aligned}
+$$
+
+
+A proporção de pessoas com resultado positivo no teste que na realidade não tem a doença é:
+$$P(D^c|T) = 1-P(D|T)=1-`r vpp`=`r fmt(1-vpp,3)`$$
+
+
+A proporção de pessoas com resultado negativo no teste que de fato não tem a doença é:
+$$
+\begin{aligned}
+P(D^c|T^c) &= \frac {P(T^c|D^c) \cdot P(D^c)}{P(T^c)}\\
+&=\frac{`r e` \cdot (1-`r prev`)}{(1-`r s`) \cdot `r prev`+`r e` \cdot (1-`r prev`)}\\
+&= `r vpn`
+\end{aligned}
+$$
+
+
+
+A proporção de pessoas com resultado negativo no teste que na realidade tem a doença é:
+$$P(D|T^c) = 1-P(D^c|T^c)= 1-`r vpn`=`r fmt(1-vpn,3)`$$
+
+
+Solutionlist
+------------
+
+* `r fmt(sol[1],3)`
+
+* `r fmt(sol[2],3)`
+
+* `r fmt(sol[3],3)`
+
+Meta-information
+================
+exname: Teorema de Bayes
+extype: cloze
+exsolution:`r fmt(sol[1],3)`|`r fmt(sol[2],3)`|`r fmt(sol[3],3)`
+exclozetype: num|num|num
+extol: `r tol[1]`|`r tol[2]`|`r tol[3]`

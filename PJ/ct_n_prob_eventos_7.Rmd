@@ -1,0 +1,39 @@
+```{r data_generation, echo = FALSE, results = "hide"}
+#Dados da questao
+(pa<-sample(seq(0.2,0.5,by=0.05),1))
+(pb<-sample(seq(0.3,0.8,by=0.05),1))
+(paunionb<-round(pa+pb-(pa*pb),2))
+(resp<-(paunionb-pa)/(1-pa))
+
+```
+
+Question
+========
+Sejam A e B eventos independentes tais que $P(A)=`r pa`$ e $P(A\cup B)=`r paunionb`$. Com base nessas informações, qual a probabilidade de $B$?
+
+(Considere a realização dos seus cálculos com arredondamento em duas casas decimais. A tolerância considerada é de 0.01.)
+
+Solution
+========
+A resposta correta é `r fmt(resp,2)`.
+
+Explicação:
+
+Do enunciado conhecemos $P(A)=`r pa`$ e $P(A\cup B)=`r paunionb`$ e sabemos que $A$ e $B$ são independentes. 
+
+Por definição, $P(A\cup B)=P(A)+P(B)-P(A\cap B)\stackrel{ind}{=} P(A)+P(B)-P(A)\cdot P(B)$, então
+
+$$
+\begin{aligned}
+P(B)&= \frac{P(A\cup B)-P(A)}{1-P(A)} \\
+&= \frac{`r paunionb`-`r pa`}{1-`r pa`}\\
+&= `r fmt(resp,2)`
+\end{aligned}
+$$  
+
+Meta-information
+================
+exname: ct_n_prob_eventos_7
+extype: num
+exsolution: `r fmt(resp,2)`
+extol: 0.01

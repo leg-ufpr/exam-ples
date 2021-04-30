@@ -1,0 +1,49 @@
+Question
+========
+
+O gráficos baseados em dados, conforme apresentado em aula, foram
+classificados de acordo com a função do gráfico. Sobre isso, assinale as
+alternativas verdadeiras.
+
+Answerlist
+----------
+* Os gráficos classificados como fluxo retratam a estrutura de
+  organização de coleções de elementos ou categorias.
+* Os gráficos de ordenação exibem os elementos ou categorias priorizando
+  a ordenação conforme alguma variável.
+* Os gráficos de mapa representam dados com propriedades geográficas.
+* O boxplot é um gráfico que descreve aspectos da distribuição dos
+  dados.
+* O gráfico de mosaico exibe a frequência considerando duas ou mais
+  variáveis qualitativas.
+* Os gráficos de evolução exibem dados ordenados no tempo.
+* Os gráficos de relação priorizam a determinação de associação entre
+  variáveis.
+* Os gráficos de distribuição retratam a distribuição de frequência.
+* A nuvem de palavras é uma visualização da categoria de gráficos para
+  distribuição.
+* O dendrograma é um gráfico que pertence a categoria de gráficos de
+  relação.
+
+Solution
+========
+
+Answerlist
+----------
+* F.
+* V.
+* V.
+* V.
+* V.
+* V.
+* V.
+* V.
+* V.
+* F.
+* F.
+
+Meta-information
+================
+exname: Funções do gráfico.
+extype: mchoice
+exsolution: 01111111100

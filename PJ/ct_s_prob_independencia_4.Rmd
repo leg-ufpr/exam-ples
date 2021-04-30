@@ -1,0 +1,34 @@
+Question
+========
+Um código binário é constituído por quatro dígitos, cada um igual a zero ou um (por exemplo,
+1011, 1001, etc). Suponha que a probabilidade de um digito correto ser informado é 0,9 
+e que os erros em diferentes dígitos sejam independentes. Qual a probabilidade de se formar um código
+incorreto?
+
+Answerlist
+---------------
+* 0,34
+* 0,56
+* 0,12
+* 0,06
+* 0,44
+
+
+Solution
+========
+  
+Answerlist
+----------
+* Verdadeira
+* Falsa
+* Falsa
+* Falsa
+* Falsa
+
+
+Meta-information
+================
+exname: ct_s_prob_independencia_4
+extype: schoice
+exsolution: 10000
+exshuffle: 5
