@@ -33,7 +33,7 @@ exams2html("arquivo.Rmd", converter = "pandoc-mathjax", mathjax = TRUE)
 Isso fará com que a página HTML com a questão apareça automaticamente no
 seu navegador padrão.
 
-<div style="background-color:grey;color:black;padding:5px;">
+<blockquote>
 Para verificar o navegador padrão definido no R, faça
 
 ```r
@@ -45,5 +45,4 @@ exemplo
 ```r
 options(browser = "/usr/bin/firefox")
 ```
-
-</div>
+</blockquote>
